@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Uptime Page</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+
+        .status-card {
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .status-card h2 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .status-card p {
+            margin: 0 0 10px;
+        }
+
+        .status-label {
+            display: inline-block;
+            padding: 3px 7px;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 10px;
+        }
+
+        .status-label-operational {
+            background-color: #5cb85c;
+        }
+
+        .status-label-partial-outage {
+            background-color: #f0ad4e;
+        }
+
+        .status-label-major-outage {
+            background-color: #d9534f;
+        }
+
+        .timeline {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px; /* Added to create consistent spacing between bars */
+}
+
+.timeline-bar {
+    height: 8px;
+    flex-basis: 10px; /* Added to allow bars to shrink when needed */
+    border-radius: 2px;
+}
+
+.timeline-bar-operational {
+    background-color: #5cb85c;
+}
+
+.timeline-bar-partial-outage {
+    background-color: #f0ad4e;
+}
+
+.timeline-bar-major-outage {
+    background-color: #d9534f;
+}
+
+@media (max-width: 1170px) {
+    .timeline-bar {
+        display: none; 
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Uptime Status</h1>
+
+        <div class="status-card">
+            <h2>API</h2>
+            <p><span class="status-label status-label-operational">Operational</span></p>
+            <div class="timeline">
+                <div class="timeline-bar timeline-bar-operational"></div>
+                <div class="timeline-bar timeline-bar-operational"></div>
+      
+
+            </div>
+        </div>
+        
+
+        <div class="status-card">
+            <h2>Website</h2>
+            <p><span class="status-label status-label-partial-outage">Partial Outage</span></p>
+        </div>
+
+        <div class="status-card">
+            <h2>Database</h2>
+            <p><span class="status-label status-label-major-outage">Major Outage</span></p>
+        </div>
+    </div>
+</body>
+</html>
