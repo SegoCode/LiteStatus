@@ -5,44 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Uptime Page</title>
     <style>
-        body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #333;
-            background-color: #fff;
-        }
+      
+      /* Update typography */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
 
-        .container {
-            max-width: 1170px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+h1, h2 {
+    font-weight: 300;
+}
 
-        h1 {
-            font-size: 36px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-weight: 500;
-            line-height: 1.1;
-        }
+/* Add extra whitespace and adjust the layout */
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 40px;
+}
 
-        .status-card {
-            background-color: #f5f5f5;
-            border-radius: 4px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+.status-card {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
 
-        .status-card h2 {
-            font-size: 24px;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
+.status-card h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
 
-        .status-card p {
-            margin: 0 0 10px;
-        }
+/* Add styles for the drop-down arrow */
+.status-card .arrow {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
         .status-label {
             display: inline-block;
@@ -100,6 +107,43 @@
         display: none; 
     }
 }
+.message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff; /* White text */
+    background-color: #28a745; /* Green background */
+    border-radius: 5px;
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+    margin: 20px auto; /* Center the box and add margin-top and margin-bottom */
+}
+
+/* Add styles for the drop-down arrow */
+.status-card .arrow {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Add styles for the service incidents timeline */
+.status-card .incidents {
+    display: none;
+    padding-top: 20px;
+}
+
+/* Add styles for the drop-down open state */
+.status-card.open .incidents {
+    display: block;
+}
+
+/* Rotate the arrow when the card is open */
+.status-card.open .arrow {
+    transform: rotate(180deg);
+}
 
     </style>
 </head>
@@ -107,6 +151,7 @@
     <div class="container">
         <h1>Uptime Status</h1>
 
+        <div class="message">All Operating Systems</div>
         <div class="status-card">
             <h2>API</h2>
             <p><span class="status-label status-label-operational">Operational</span></p>
@@ -118,6 +163,17 @@
             </div>
         </div>
         
+        <div class="status-card">
+            <h2>API 2<span class="arrow">&#x25bc;</span></h2>
+            <p><span class="status-label status-label-operational">Operational</span></p>
+            <div class="timeline">
+                <div class="timeline-bar timeline-bar-operational"></div>
+                <div class="timeline-bar timeline-bar-operational"></div>
+            </div>
+            <div class="incidents">
+                <!-- Add your service incidents timeline here -->
+            </div>
+        </div>
 
         <div class="status-card">
             <h2>Website</h2>
@@ -130,4 +186,13 @@
         </div>
     </div>
 </body>
+
+<script>
+    // Add a click event listener to handle the drop-down functionality
+    document.querySelectorAll('.status-card').forEach(function (card) {
+        card.querySelector('.arrow').addEventListener('click', function () {
+            card.classList.toggle('open');
+        });
+    });
+</script>
 </html>
