@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Simple Uptime Page</title>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Uptime Status</h1>
+
+			<div class="message">All Operating Systems</div>
+			<section>
+				<article>
+					<div class="status-card">
+						<h2>API<span class="arrow">&#x25bc;</span></h2>
+						<p><span class="status-label status-label-operational">Operational</span></p>
+						<div class="timeline">
+							<div class="timeline-bar timeline-bar-operational"><span class="tooltip">2023-03-22</span></div>
+							<div class="timeline-bar timeline-bar-partial-outage"><span class="tooltip">2023-03-22</span></div>
+							<div class="timeline-bar timeline-bar-major-outage"><span class="tooltip">2023-03-22</span></div>
+						</div>
+						<div class="incidents">
+							<!-- Add your service incidents timeline here -->
+						</div>
+					</div>
+				</article>
+
+				<article>
+					<div class="status-card">
+						<h2>Website<span class="arrow">&#x25bc;</span></h2>
+						<p><span class="status-label status-label-partial-outage">Partial Outage</span></p>
+						<div class="timeline">
+							<div class="timeline-bar timeline-bar-operational"></div>
+							<div class="timeline-bar timeline-bar-partial-outage"></div>
+							<div class="timeline-bar timeline-bar-major-outage"></div>
+						</div>
+						<div class="incidents">
+							<!-- Add your service incidents timeline here -->
+						</div>
+					</div>
+				</article>
+
+				<article>
+					<div class="status-card">
+						<h2>Database<span class="arrow">&#x25bc;</span></h2>
+						<p><span class="status-label status-label-major-outage">Major Outage</span></p>
+						<div class="timeline">
+							<div class="timeline-bar timeline-bar-operational"></div>
+							<div class="timeline-bar timeline-bar-partial-outage"></div>
+							<div class="timeline-bar timeline-bar-major-outage"></div>
+						</div>
+						<div class="incidents">
+							<!-- Add your service incidents timeline here -->
+						</div>
+					</div>
+				</article>
+			</section>
+		</div>
+		<!-- JS -->
+		<script src="./assets/js/script.js"></script>
+	</body>
+</html>

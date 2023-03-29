@@ -1,0 +1,51 @@
+{
+    "services": [
+      {
+        "name": "Service A",
+        "status": [
+          {
+            "timestamp": "2023-03-29T10:30:00Z",
+            "response": "online",
+            "response_id": 1,
+            "description": "Service A is currently online with no issues."
+          },
+          {
+            "timestamp": "2023-03-28T08:00:00Z",
+            "response": "offline",
+            "response_id": 2,
+            "description": "Service A was offline due to scheduled maintenance."
+          },
+          {
+            "timestamp": "2023-03-27T15:45:00Z",
+            "response": "latency",
+            "response_id": 3,
+            "description": "Service A is experiencing latency issues."
+          }
+        ]
+      },
+      {
+        "name": "Service B",
+        "status": [
+          {
+            "timestamp": "2023-03-29T10:30:00Z",
+            "response": "offline",
+            "response_id": 1,
+            "description": "Service B is currently offline due to server issues."
+          },
+          {
+            "timestamp": "2023-03-28T08:00:00Z",
+            "response": "offline",
+            "response_id": 2,
+            "description": "Service B was offline due to a power outage."
+          },
+          {
+            "timestamp": "2023-03-27T15:45:00Z",
+            "response": "online",
+            "response_id": 3,
+            "description": "Service B is currently online with no issues."
+          }
+        ]
+      }
+    ]
+  }
+  
