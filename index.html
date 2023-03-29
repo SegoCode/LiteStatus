@@ -88,6 +88,7 @@
 				height: 8px;
 				flex-basis: 10px; /* Added to allow bars to shrink when needed */
 				border-radius: 2px;
+                position: relative;
 			}
 
 			.timeline-bar-operational {
@@ -144,6 +145,24 @@
 			.status-card.open .arrow {
 				transform: rotate(180deg);
 			}
+
+            .tooltip {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 10;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+
+
 		</style>
 	</head>
 	<body>
@@ -157,9 +176,9 @@
 						<h2>API<span class="arrow">&#x25bc;</span></h2>
 						<p><span class="status-label status-label-operational">Operational</span></p>
 						<div class="timeline">
-							<div class="timeline-bar timeline-bar-operational"></div>
-							<div class="timeline-bar timeline-bar-partial-outage"></div>
-							<div class="timeline-bar timeline-bar-major-outage"></div>
+							<div class="timeline-bar timeline-bar-operational"><span class="tooltip">2023-03-22</span></div>
+							<div class="timeline-bar timeline-bar-partial-outage"><span class="tooltip">2023-03-22</span></div>
+							<div class="timeline-bar timeline-bar-major-outage"><span class="tooltip">2023-03-22</span></div>
 						</div>
 						<div class="incidents">
 							<!-- Add your service incidents timeline here -->
@@ -206,6 +225,18 @@
 					card.classList.toggle('open');
 				});
 			});
+
+            document.querySelectorAll('.timeline-bar').forEach(function (bar) {
+    bar.addEventListener('mouseover', function () {
+        const tooltip = bar.querySelector('.tooltip');
+        tooltip.style.display = 'block';
+    });
+
+    bar.addEventListener('mouseout', function () {
+        const tooltip = bar.querySelector('.tooltip');
+        tooltip.style.display = 'none';
+    });
+});
 		</script>
 	</body>
 </html>
