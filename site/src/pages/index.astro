@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceTimeline from '../components/ServiceTimeline.astro';
+import StatusSummary from '../components/StatusSummary.astro';
+import Communications from '../components/Communications.astro';
+
+const services = [
+  { name: 'Website', pings: [
+    { timestamp: new Date('2023-05-01T10:00:00'), status: 'up', responseTime: 250 },
+    { timestamp: new Date('2023-05-01T11:00:00'), status: 'up', responseTime: 280 },
+    { timestamp: new Date('2023-05-01T12:00:00'), status: 'down', responseTime: 0 },
+    { timestamp: new Date('2023-05-01T13:00:00'), status: 'up', responseTime: 320 },
+    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 270 },
+  ]},
+  { name: 'API', pings: [
+    { timestamp: new Date('2023-05-01T10:00:00'), status: 'up', responseTime: 150 },
+    { timestamp: new Date('2023-05-01T11:00:00'), status: 'up', responseTime: 180 },
+    { timestamp: new Date('2023-05-01T12:00:00'), status: 'up', responseTime: 160 },
+    { timestamp: new Date('2023-05-01T13:00:00'), status: 'up', responseTime: 170 },
+    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 155 },
+  ]},
+  { name: 'Database', pings: [
+    { timestamp: new Date('2023-05-01T10:00:00'), status: 'up', responseTime: 50 },
+    { timestamp: new Date('2023-05-01T11:00:00'), status: 'down', responseTime: 0 },
+    { timestamp: new Date('2023-05-01T12:00:00'), status: 'up', responseTime: 55 },
+    { timestamp: new Date('2023-05-01T13:00:00'), status: 'up', responseTime: 48 },
+    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 52 },
+  ]},
+];
+
+const overallStatus = services.every(service => service.pings[service.pings.length - 1].status === 'up') ? 'up' : 'down';
+const lastUpdated = new Date().toLocaleString();
+
+const communications = [
+  {
+    timestamp: new Date('2023-05-01T12:15:00'),
+    message: 'We are investigating reports of intermittent downtime on our Website service.',
+    type: 'investigating'
+  },
+  {
+    timestamp: new Date('2023-05-01T13:30:00'),
+    message: 'The issue with the Website service has been resolved. We apologize for any inconvenience caused.',
+    type: 'resolved'
+  }
+];
+---
+
+<Layout title="Service Uptime Dashboard">
+  <main class="mx-auto p-8 w-full max-w-7xl">
+    <div class="flex justify-between items-center mb-12">
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Service Status</h1>
+        <p class="text-sm text-gray-600">Last updated: {lastUpdated}</p>
+      </div>
+      <StatusSummary status={overallStatus} />
+    </div>
+    
+    <div class="space-y-6 mb-12">
+      {services.map((service) => (
+        <ServiceTimeline name={service.name} pings={service.pings} />
+      ))}
+    </div>
+
+    <Communications messages={communications} />
+  </main>
+</Layout>

@@ -1,0 +1,85 @@
+---
+interface Ping {
+  timestamp: Date;
+  status: 'up' | 'down';
+  responseTime: number;
+}
+
+interface Props {
+  name: string;
+  pings: Ping[];
+}
+
+const { name, pings } = Astro.props;
+const currentStatus = pings[pings.length - 1].status;
+const uptime = (pings.filter(ping => ping.status === 'up').length / pings.length * 100).toFixed(2);
+const avgResponseTime = pings.filter(ping => ping.status === 'up').reduce((sum, ping) => sum + ping.responseTime, 0) / pings.filter(ping => ping.status === 'up').length;
+
+const getUptimeColor = (uptime: number) => {
+  if (uptime >= 99) return 'text-green-600';
+  if (uptime >= 95) return 'text-yellow-600';
+  return 'text-red-600';
+};
+
+const getResponseTimeColor = (time: number) => {
+  if (time <= 100) return 'text-green-600';
+  if (time <= 300) return 'text-yellow-600';
+  return 'text-red-600';
+};
+
+const getStatusIcon = (status: 'up' | 'down') => {
+  return status === 'up' 
+    ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'
+    : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+};
+---
+
+<div class="bg-white rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border border-gray-100">
+  <div class="flex justify-between items-center mb-6">
+    <div class="flex items-center space-x-3">
+      <div class={`w-2 h-2 rounded-full ${currentStatus === 'up' ? 'bg-green-500' : 'bg-red-500'} animate-pulse`}></div>
+      <h2 class="text-xl font-semibold text-gray-800">{name}</h2>
+    </div>
+    <div class="flex items-center space-x-3">
+      <span class={`inline-flex items-center space-x-1 text-sm font-medium px-3 py-1 rounded-full ${
+        currentStatus === 'up' 
+          ? 'bg-green-100 text-green-800 border border-green-200' 
+          : 'bg-red-100 text-red-800 border border-red-200'
+      }`}>
+        <Fragment set:html={getStatusIcon(currentStatus)} />
+        <span>{currentStatus.toUpperCase()}</span>
+      </span>
+      <a href="#" class="text-gray-400 hover:text-accent transition-colors duration-200 p-1 rounded-full hover:bg-gray-100" title="View in Grafana">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+          <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="flex gap-1 items-center mb-6 h-12 bg-gray-50 rounded-lg px-2 overflow-hidden">
+    {pings.map((ping) => (
+      <div
+        class={`flex-1 h-8 rounded transition-all duration-200 hover:scale-y-110 cursor-pointer ${
+          ping.status === 'up' ? 'bg-green-500/80 hover:bg-green-500' : 'bg-red-500/80 hover:bg-red-500'
+        }`}
+        title={`${ping.timestamp.toLocaleDateString()} ${ping.timestamp.toLocaleTimeString()}
+Status: ${ping.status.toUpperCase()}
+Response Time: ${ping.responseTime}ms`}
+      ></div>
+    ))}
+  </div>
+
+  <div class="flex justify-between items-center text-sm px-1">
+    <div class="flex flex-col">
+      <span class="text-gray-500 mb-1">Uptime</span>
+      <span class={`font-bold text-lg ${getUptimeColor(parseFloat(uptime))}`}>{uptime}%</span>
+    </div>
+    <div class="h-12 w-px bg-gray-200"></div>
+    <div class="flex flex-col items-end">
+      <span class="text-gray-500 mb-1">Response Time</span>
+      <span class={`font-bold text-lg ${getResponseTimeColor(avgResponseTime)}`}>{avgResponseTime.toFixed(0)}ms</span>
+    </div>
+  </div>
+</div>
