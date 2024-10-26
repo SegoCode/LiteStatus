@@ -1,0 +1,36 @@
+name: Make the ping
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour at minute 0
+  workflow_dispatch:
+
+jobs:
+  generate-registry-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # We'll authenticate using GITHUB_TOKEN
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run ping script
+        run: |
+          cd status
+          node ping.js
+
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add status/pingResults.json
+          git diff --quiet && echo "No changes to commit" || git commit -m "Update ping results"
+          git push
