@@ -15,10 +15,10 @@ LiteStatus is a lightweight site uptime monitoring solution that uses GitHub Act
 
 ## Features
 
-- **Automated uptime checks**: The GitHub Action pings each website hourly, ensuring your status page displays current availability.
-- **Status data**: `pingResults.json` provides a structured and easily parsable format, ideal for front-end integration.
-- **Astro.js**: Leverages Astro.js for a static site build, making it efficient and flexible for customization.
-- **Free**: Host the entire solution on GitHub with GitHub Pages and GitHub Actions.
+- The GitHub Action pings each website hourly, ensuring your status page displays current availability.
+- `pingResults.json` provides a structured and easily parsable format, ideal for front-end integration.
+- Leverages Astro.js for a static site build, making it efficient and flexible for customization.
+- Host the entire solution on GitHub with GitHub Pages and GitHub Actions.
 
 ## Quick Start & Information
 
