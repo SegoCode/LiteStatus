@@ -1,0 +1,32 @@
+[
+  {
+    "name": "ChatGPT",
+    "pings": [
+      {
+        "timestamp": "2024-10-27T12:12:23.023Z",
+        "status": "up",
+        "responseTime": 107
+      }
+    ]
+  },
+  {
+    "name": "OpenIA",
+    "pings": [
+      {
+        "timestamp": "2024-10-27T12:12:23.023Z",
+        "status": "up",
+        "responseTime": 38
+      }
+    ]
+  },
+  {
+    "name": "API OpenIA",
+    "pings": [
+      {
+        "timestamp": "2024-10-27T12:12:23.023Z",
+        "status": "up",
+        "responseTime": 45
+      }
+    ]
+  }
+]
