@@ -4,49 +4,50 @@ import ServiceTimeline from '../components/ServiceTimeline.astro';
 import StatusSummary from '../components/StatusSummary.astro';
 import Communications from '../components/Communications.astro';
 
-const services = [
-  { name: 'Website', pings: [
-    { timestamp: new Date('2023-05-01T10:00:00'), status: 'up', responseTime: 250 },
-    { timestamp: new Date('2023-05-01T11:00:00'), status: 'up', responseTime: 280 },
-    { timestamp: new Date('2023-05-01T12:00:00'), status: 'down', responseTime: 0 },
-    { timestamp: new Date('2023-05-01T13:00:00'), status: 'up', responseTime: 320 },
-    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 270 },
-  ]},
-  { name: 'API', pings: [
-    { timestamp: new Date('2023-05-01T10:00:00'), status: 'up', responseTime: 150 },
-    { timestamp: new Date('2023-05-01T11:00:00'), status: 'up', responseTime: 180 },
-    { timestamp: new Date('2023-05-01T12:00:00'), status: 'up', responseTime: 160 },
-    { timestamp: new Date('2023-05-01T13:00:00'), status: 'up', responseTime: 170 },
-    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 155 },
-    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 155 },
-    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 155 },
-    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 155 },
-  ]},
-  { name: 'Database', pings: [
-    { timestamp: new Date('2023-05-01T10:00:00'), status: 'up', responseTime: 50 },
-    { timestamp: new Date('2023-05-01T11:00:00'), status: 'down', responseTime: 0 },
-    { timestamp: new Date('2023-05-01T12:00:00'), status: 'up', responseTime: 55 },
-    { timestamp: new Date('2023-05-01T13:00:00'), status: 'up', responseTime: 48 },
-    { timestamp: new Date('2023-05-01T14:00:00'), status: 'up', responseTime: 52 },
-  ]},
-];
+// Fetch ping results from the API
+const response = await fetch('https://raw.githubusercontent.com/SegoCode/LiteStatus/main/code/ping/pingResults.json');
+const services = await response.json();
 
-const overallStatus = services.every(service => service.pings[service.pings.length - 1].status === 'up') ? 'up' : 'down';
+// Transform the timestamp strings to Date objects
+const transformedServices = services.map(service => ({
+  ...service,
+  pings: service.pings.map(ping => ({
+    ...ping,
+    timestamp: new Date(ping.timestamp)
+  }))
+}));
+
+// Calculate overall status based on the latest ping of each service
+const overallStatus = transformedServices.every(
+  service => service.pings[service.pings.length - 1].status === 'up'
+) ? 'up' : 'down';
+
 const lastUpdated = new Date().toLocaleString();
 
+// Get the last 24 hours of communications
 const communications = [
   {
-    timestamp: new Date('2023-05-01T12:15:00'),
-    message: 'We are investigating reports of intermittent downtime on our Website service.',
-    type: 'investigating'
-  },
-  {
-    timestamp: new Date('2023-05-01T13:30:00'),
-    message: 'The issue with the Website service has been resolved. We apologize for any inconvenience caused.',
+    timestamp: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
+    message: 'All systems are operating normally.',
     type: 'resolved'
   }
 ];
+
+// If there are any down services, add an investigating message
+if (overallStatus === 'down') {
+  const downServices = transformedServices
+    .filter(service => service.pings[service.pings.length - 1].status === 'down')
+    .map(service => service.name)
+    .join(', ');
+
+  communications.unshift({
+    timestamp: new Date(),
+    message: `We are investigating reports of issues with: ${downServices}`,
+    type: 'investigating'
+  });
+}
 ---
+
 <Layout title="Service Uptime Dashboard">
   <main class="mx-auto p-8 w-full max-w-7xl">
     <div class="flex justify-between items-center mb-12">
@@ -58,7 +59,7 @@ const communications = [
     </div>
     
     <div class="space-y-6 mb-12">
-      {services.map((service) => (
+      {transformedServices.map((service) => (
         <ServiceTimeline name={service.name} pings={service.pings} />
       ))}
     </div>
