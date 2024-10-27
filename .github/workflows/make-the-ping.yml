@@ -22,7 +22,7 @@ jobs:
 
       - name: Run ping script
         run: |
-          cd status
+          cd ping
           node ping.js
 
       - name: Commit and Push Changes
@@ -31,6 +31,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add status/pingResults.json
+          git add ping/pingResults.json
           git diff --quiet && echo "No changes to commit" || git commit -m "Update ping results"
           git push
