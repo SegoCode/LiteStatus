@@ -34,7 +34,7 @@ const getStatusIcon = (status: 'up' | 'down') => {
 };
 ---
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="bg-white rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border border-gray-100">
   <div class="flex justify-between items-center mb-6">
     <div class="flex items-center space-x-3">
       <div class={`w-2 h-2 rounded-full ${currentStatus === 'up' ? 'bg-green-500' : 'bg-red-500'} animate-pulse`}></div>
@@ -61,8 +61,10 @@ const getStatusIcon = (status: 'up' | 'down') => {
   <div class="flex gap-1 items-center mb-6 h-12 bg-gray-50 rounded-lg px-2 overflow-hidden">
     {pings.map((ping) => (
       <div
-        class={`flex-1 h-8 rounded transition-all duration-200 hover:scale-y-110 cursor-pointer ${
-          ping.status === 'up' ? 'bg-green-500/80 hover:bg-green-500' : 'bg-red-500/80 hover:bg-red-500'
+        class={`flex-1 h-8 rounded transform transition-all duration-200 hover:scale-y-110 cursor-pointer ${
+          ping.status === 'up' 
+            ? 'bg-green-500 bg-opacity-50 hover:bg-opacity-100' 
+            : 'bg-red-500 bg-opacity-50 hover:bg-opacity-100'
         }`}
         title={`${ping.timestamp.toLocaleDateString()} ${ping.timestamp.toLocaleTimeString()}
 Status: ${ping.status.toUpperCase()}
