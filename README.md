@@ -10,6 +10,7 @@
 </p>
 
 ## About
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 
 LiteStatus is a lightweight site uptime monitoring solution that uses GitHub Actions to regularly check the availability of specified websites. Results are stored in a JSON file (`pingResults.json`) this file is accessed by the front end, built with Astro.js, to provide a dynamically updated status page hosted on GitHub Pages. This setup enables a fully automated, cost-free, and easily customizable status page deployment just using GitHub's free ecosystem.
 
