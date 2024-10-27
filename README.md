@@ -25,7 +25,7 @@ LiteStatus is a lightweight site uptime monitoring solution that uses GitHub Act
 
 To start the project, ensure Node.js is installed on your system and pnpm is set up as the package manager. Follow these steps:
 
-    Install pnpm globally:
+Install pnpm globally:
 
 ```shell
 
