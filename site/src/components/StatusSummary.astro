@@ -12,7 +12,7 @@ const getStatusIcon = (status: 'up' | 'down') => {
 };
 ---
 
-<div class={`flex items-center px-6 py-4 rounded-xl font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md border ${
+<div class={`flex items-center px-6 py-4 rounded-xl font-semibold border ${
   status === 'up' 
     ? 'bg-green-50 text-green-800 border-green-200' 
     : 'bg-red-50 text-red-800 border-red-200'
