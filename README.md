@@ -1,4 +1,4 @@
-# LiteStatus - Site Uptime Monitor
+# LiteStatus
 
 <h3 align="center"><img src="media/demo.png"></h3>
 
@@ -32,6 +32,7 @@ LiteStatus is a lightweight site uptime monitoring solution that uses GitHub Act
 ## Download
 
 Download the latest version of `pingResults.json` [here](https://github.com/SegoCode/LiteStatus/blob/main/code/ping/pingResults.json).
+
 ---
 <p align="center"><a href="https://github.com/{username}/{reponame}/graphs/contributors">
   <img src="https://contrib.rocks/image?repo={username}/{reponame}" />
