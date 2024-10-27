@@ -22,12 +22,39 @@ LiteStatus is a lightweight site uptime monitoring solution that uses GitHub Act
 
 ## Quick Start & Information
 
-1. **Clone the repository**: `git clone https://github.com/SegoCode/LiteStatus.git`
-2. **Set Up GitHub Action**: Configure the GitHub Action to run the ping monitoring script in `LiteStatus/code/ping` automatically. This Action will populate `pingResults.json` with up-to-date status data.
-3. **Deploy the front with Astro.js**:
-   - Navigate to the front-end directory: `cd LiteStatus/code/front`
-   - Install dependencies: `npm install`
-   - Build the static site: `npm run dev`
+To start the project, ensure Node.js is installed on your system and pnpm is set up as the package manager. Follow these steps:
+
+    Install pnpm globally:
+
+```shell
+
+npm install -g pnpm
+```
+
+Clone the repository:
+
+```shell
+
+git clone https://github.com/SegoCode/LiteStatus
+cd code
+```
+
+Install dependencies and build the project:
+
+```shell
+
+pnpm install
+```
+
+Run the development environment:
+
+```shell
+
+    pnpm dev
+```
+
+> [!IMPORTANT]  
+> Remember that deploy the project in local will still make the request to the json data hosted on github
 
 ## Download
 
