@@ -2,6 +2,7 @@
 code/front/node_modules
 code/front/.astro
 code/front/src/env.d.ts
+code/front/dist
 
 # Created by https://www.toptal.com/developers/gitignore/api/git,gpg,ssh,vim,linux,macos,windows,notepadpp,sublimetext,intellij+all,visualstudiocode,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,gpg,ssh,vim,linux,macos,windows,notepadpp,sublimetext,intellij+all,visualstudiocode,dotenv
@@ -272,4 +273,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/git,gpg,ssh,vim,linux,macos,windows,notepadpp,sublimetext,intellij+all,visualstudiocode,dotenv
-
