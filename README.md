@@ -37,21 +37,19 @@ Clone the repository:
 ```shell
 
 git clone https://github.com/SegoCode/LiteStatus
-cd code
+cd code/front
 ```
 
 Install dependencies and build the project:
 
 ```shell
-
 pnpm install
 ```
 
 Run the development environment:
 
 ```shell
-
-    pnpm dev
+pnpm dev
 ```
 
 > [!IMPORTANT]  
