@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-registry-files:
+  make-the-ping:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Run ping script
         run: |
-          cd ping
+          cd code/ping
           node ping.js
 
       - name: Commit and Push Changes
@@ -31,7 +31,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add ping/pingResults.json
+          git add code/ping/pingResults.json
           git commit -m "Update registry files" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/SegoCode/LiteStatus.git HEAD:main
 
