@@ -3,67 +3,37 @@ import Layout from '../layouts/Layout.astro';
 import ServiceTimeline from '../components/ServiceTimeline.astro';
 import StatusSummary from '../components/StatusSummary.astro';
 import Communications from '../components/Communications.astro';
-
-// Fetch ping results from the API
-const response = await fetch('https://raw.githubusercontent.com/SegoCode/LiteStatus/main/code/ping/pingResults.json');
-const services = await response.json();
-
-// Transform the timestamp strings to Date objects
-const transformedServices = services.map(service => ({
-  ...service,
-  pings: service.pings.map(ping => ({
-    ...ping,
-    timestamp: new Date(ping.timestamp)
-  }))
-}));
-
-// Calculate overall status based on the latest ping of each service
-const overallStatus = transformedServices.every(
-  service => service.pings[service.pings.length - 1].status === 'up'
-) ? 'up' : 'down';
-
-const lastUpdated = new Date().toLocaleString();
-
-// Get the last 24 hours of communications
-const communications = [
-  {
-    timestamp: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
-    message: 'All systems are operating normally.',
-    type: 'resolved'
-  }
-];
-
-// If there are any down services, add an investigating message
-if (overallStatus === 'down') {
-  const downServices = transformedServices
-    .filter(service => service.pings[service.pings.length - 1].status === 'down')
-    .map(service => service.name)
-    .join(', ');
-
-  communications.unshift({
-    timestamp: new Date(),
-    message: `We are investigating reports of issues with: ${downServices}`,
-    type: 'investigating'
-  });
-}
 ---
 
 <Layout title="Service Uptime Dashboard">
   <main class="mx-auto p-8 w-full max-w-7xl">
     <div class="flex justify-between items-center mb-12">
       <div>
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Service Status</h1>
-        <p class="text-sm text-gray-600">Last updated: {lastUpdated}</p>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">LiteStatus</h1>
+        <p class="text-sm text-gray-600" id="last-updated">Loading...</p>
       </div>
-      <StatusSummary status={overallStatus} />
+      <StatusSummary />
     </div>
     
-    <div class="space-y-6 mb-12">
-      {transformedServices.map((service) => (
-        <ServiceTimeline name={service.name} pings={service.pings} />
-      ))}
+    <div id="service-timelines" class="space-y-6 mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+        <div class="animate-pulse flex space-x-4">
+          <div class="flex-1 space-y-4 py-1">
+            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+            <div class="space-y-2">
+              <div class="h-4 bg-gray-200 rounded"></div>
+              <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <Communications messages={communications} />
+    <Communications />
   </main>
+
+  <script>
+    import { setupDashboard } from '../utils/dashboard';
+    setupDashboard();
+  </script>
 </Layout>
