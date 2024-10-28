@@ -76,6 +76,11 @@
         "timestamp": "2024-10-28T02:55:40.750Z",
         "status": "up",
         "responseTime": 88
+      },
+      {
+        "timestamp": "2024-10-28T03:29:09.851Z",
+        "status": "up",
+        "responseTime": 72
       }
     ]
   },
@@ -156,6 +161,11 @@
         "timestamp": "2024-10-28T02:55:40.750Z",
         "status": "up",
         "responseTime": 38
+      },
+      {
+        "timestamp": "2024-10-28T03:29:09.851Z",
+        "status": "up",
+        "responseTime": 33
       }
     ]
   },
@@ -236,6 +246,11 @@
         "timestamp": "2024-10-28T02:55:40.750Z",
         "status": "up",
         "responseTime": 36
+      },
+      {
+        "timestamp": "2024-10-28T03:29:09.851Z",
+        "status": "up",
+        "responseTime": 35
       }
     ]
   }
