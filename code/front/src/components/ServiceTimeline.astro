@@ -13,10 +13,10 @@ interface Props {
 const { name, pings } = Astro.props;
 ---
 
-<div class="bg-white rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border border-gray-100" data-service-timeline>
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100" data-service-timeline>
   <div class="flex justify-between items-center mb-6">
     <div class="flex items-center space-x-3">
-      <div class="w-2 h-2 rounded-full" data-status-indicator></div>
+      <div class="w-2 h-2 rounded-full relative before:content-[''] before:w-2 before:h-2 before:rounded-full before:absolute before:inset-0 before:animate-ping before:bg-green-500/75" data-status-indicator></div>
       <h2 class="text-xl font-semibold text-gray-800">{name}</h2>
     </div>
     <div class="flex items-center space-x-3">

@@ -1,7 +1,23 @@
 ---
+interface Props {
+  initialState?: 'normal' | 'investigating';
+}
+
+const { initialState = 'normal' } = Astro.props;
 ---
 
 <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
   <h2 class="text-2xl font-semibold text-gray-800 mb-6">System Communications</h2>
-  <div data-communications></div>
+  <div data-communications>
+    <div class="space-y-6">
+      <div class="flex items-start">
+        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-200 mr-4"></div>
+        <div class="flex-1 space-y-2">
+          <div class="h-4 bg-gray-200 rounded w-24"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div class="h-4 bg-gray-200 rounded w-32"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

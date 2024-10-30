@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceTimeline from '../components/ServiceTimeline.astro';
+import ServiceTimelineSkeleton from '../components/ServiceTimelineSkeleton.astro';
 import StatusSummary from '../components/StatusSummary.astro';
 import Communications from '../components/Communications.astro';
 ---
@@ -16,17 +17,7 @@ import Communications from '../components/Communications.astro';
     </div>
     
     <div id="service-timelines" class="space-y-6 mb-12">
-      <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-        <div class="animate-pulse flex space-x-4">
-          <div class="flex-1 space-y-4 py-1">
-            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div class="space-y-2">
-              <div class="h-4 bg-gray-200 rounded"></div>
-              <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ServiceTimelineSkeleton />
     </div>
 
     <Communications />
