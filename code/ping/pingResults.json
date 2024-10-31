@@ -3,11 +3,6 @@
     "name": "ChatGPT",
     "pings": [
       {
-        "timestamp": "2024-10-29T07:19:01.802Z",
-        "status": "up",
-        "responseTime": 146
-      },
-      {
         "timestamp": "2024-10-29T08:24:42.483Z",
         "status": "up",
         "responseTime": 63
@@ -251,17 +246,17 @@
         "timestamp": "2024-10-31T10:19:49.736Z",
         "status": "up",
         "responseTime": 151
+      },
+      {
+        "timestamp": "2024-10-31T11:15:49.638Z",
+        "status": "up",
+        "responseTime": 79
       }
     ]
   },
   {
     "name": "OpenIA",
     "pings": [
-      {
-        "timestamp": "2024-10-29T07:19:01.802Z",
-        "status": "up",
-        "responseTime": 54
-      },
       {
         "timestamp": "2024-10-29T08:24:42.483Z",
         "status": "up",
@@ -506,17 +501,17 @@
         "timestamp": "2024-10-31T10:19:49.736Z",
         "status": "up",
         "responseTime": 41
+      },
+      {
+        "timestamp": "2024-10-31T11:15:49.638Z",
+        "status": "up",
+        "responseTime": 46
       }
     ]
   },
   {
     "name": "API OpenIA",
     "pings": [
-      {
-        "timestamp": "2024-10-29T07:19:01.802Z",
-        "status": "up",
-        "responseTime": 49
-      },
       {
         "timestamp": "2024-10-29T08:24:42.483Z",
         "status": "up",
@@ -761,6 +756,11 @@
         "timestamp": "2024-10-31T10:19:49.736Z",
         "status": "up",
         "responseTime": 41
+      },
+      {
+        "timestamp": "2024-10-31T11:15:49.638Z",
+        "status": "up",
+        "responseTime": 36
       }
     ]
   }
