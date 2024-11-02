@@ -52,7 +52,7 @@ Run the development environment:
 pnpm dev
 ```
 
-> [!IMPORTANT]  
+> [!NOTE]  
 > Remember that deploy the project in local will still make the request to the json data hosted on github
 
 ## Download
