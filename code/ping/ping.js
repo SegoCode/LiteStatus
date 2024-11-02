@@ -5,8 +5,7 @@ const http = require('http');
 // List of predefined websites to ping
 const websites = [
   { name: "ChatGPT", url: "https://chatgpt.com/" },
-  { name: "OpenIA", url: "https://openai.com/" },
-  { name: "API OpenIA", url: "https://api.openai.com/" }
+  { name: "OpenIA", url: "https://api.openai.com/" },
 ];
 
 const dataFile = 'pingResults.json';
