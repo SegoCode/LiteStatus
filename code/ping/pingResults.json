@@ -3,11 +3,6 @@
     "name": "ChatGPT",
     "pings": [
       {
-        "timestamp": "2025-01-31T03:19:18.909Z",
-        "status": "up",
-        "responseTime": 243
-      },
-      {
         "timestamp": "2025-01-31T04:21:36.219Z",
         "status": "up",
         "responseTime": 85
@@ -251,17 +246,17 @@
         "timestamp": "2025-02-02T06:23:46.682Z",
         "status": "up",
         "responseTime": 142
+      },
+      {
+        "timestamp": "2025-02-02T07:15:22.076Z",
+        "status": "up",
+        "responseTime": 79
       }
     ]
   },
   {
     "name": "OpenIA",
     "pings": [
-      {
-        "timestamp": "2025-01-31T03:19:18.909Z",
-        "status": "up",
-        "responseTime": 51
-      },
       {
         "timestamp": "2025-01-31T04:21:36.219Z",
         "status": "up",
@@ -506,6 +501,11 @@
         "timestamp": "2025-02-02T06:23:46.682Z",
         "status": "up",
         "responseTime": 26
+      },
+      {
+        "timestamp": "2025-02-02T07:15:22.076Z",
+        "status": "up",
+        "responseTime": 33
       }
     ]
   }
